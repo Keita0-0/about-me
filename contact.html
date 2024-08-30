@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- ヘッダー -->
+        <header>
+            <div class="logo">
+                <a href="myself.html">自己紹介</a>
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="home.html">HOME</a></li>
+                    <li><a href="news.html">NEWS</a></li>
+                    <li><a href="hobby.html">HOBBY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="search">
+                <input type="text" placeholder="🔎?">
+            </div>
+            <div class="menu-icon" id="menu-icon">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </header>
+
+        <!-- コンテンツ -->
+        <main>
+            <section class="otoiawase">
+                <h2>お問い合わせフォーム</h2>
+                <form action="submit_form.php" method="post">
+                    <label for="name">お名前:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">メールアドレス:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">メッセージ:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <button type="submit">送信</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2024 keita0-0. All rights reserved.</p>
+    </footer>
+
+    <!-- TOPに戻るボタン -->
+    <button id="scrollToTopBtn">TOPに戻る</button>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
