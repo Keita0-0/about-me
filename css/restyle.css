@@ -91,9 +91,11 @@ header {
     transition: all 0.3s ease-in-out;
 }
 
+
+
 /* ハンバーガーメニュー */
 .mobile-menu {
-    display: none; /* 初期状態は非表示 */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -121,8 +123,28 @@ header {
     color: white;
     font-size: 24px;
     text-decoration: none;
+    position: relative;  /* 追加: 相対位置指定 */
+    display: inline-block;  /* 追加: インラインブロック要素に変更 */
+    padding-bottom: 5px;  /* 追加: 下部に余白を追加 */
 }
 
+/* ハンバーガーメニューのリンクに線を追加 */
+.mobile-menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    left: 50%;
+    bottom: 0;  /* 変更: -5px から 0 に */
+    transition: width 0.3s, left 0.3s;
+    z-index: 1;  /* 追加: z-indexを設定 */
+}
+
+.mobile-menu ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
 /* メニューアイコンのアニメーション */
 .menu-icon.change .bar1 {
     transform: rotate(-45deg) translate(-6px, 6px);
@@ -135,6 +157,7 @@ header {
 .menu-icon.change .bar3 {
     transform: rotate(45deg) translate(-6px, -6px);
 }
+
 
 /* スクロールボタン */
 #scrollToTopBtn {
@@ -164,6 +187,10 @@ main {
 h1 {
     font-size: 48px;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+h2 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .timeline a {

@@ -17,6 +17,11 @@ html,body {
 }
 .wrapper{
     flex: 1;
+    padding-top: 20px; /* コンテンツとヘッダーの間に少し余白を追加 */
+}
+
+body {
+    padding-top: 70px; /* ヘッダーの高さと同じ値 */
 }
 
 /* ヘッダー */
@@ -93,7 +98,7 @@ header {
 
 /* ハンバーガーメニュー */
 .mobile-menu {
-    display: none; /* 初期状態は非表示 */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -121,6 +126,27 @@ header {
     color: white;
     font-size: 24px;
     text-decoration: none;
+    position: relative;  /* 追加: 相対位置指定 */
+    display: inline-block;  /* 追加: インラインブロック要素に変更 */
+    padding-bottom: 5px;  /* 追加: 下部に余白を追加 */
+}
+
+/* ハンバーガーメニューのリンクに線を追加 */
+.mobile-menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    left: 50%;
+    bottom: 0;  /* 変更: -5px から 0 に */
+    transition: width 0.3s, left 0.3s;
+    z-index: 1;  /* 追加: z-indexを設定 */
+}
+
+.mobile-menu ul li a:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 /* メニューアイコンのアニメーション */
@@ -135,6 +161,7 @@ header {
 .menu-icon.change .bar3 {
     transform: rotate(45deg) translate(-6px, -6px);
 }
+
 
 /* スクロールボタン */
 #scrollToTopBtn {
@@ -171,21 +198,6 @@ h1 {
     font-size: 20px;
     text-decoration: none;
 }
-/* フッター */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
 
 
 
@@ -198,25 +210,125 @@ footer p {
     .menu-icon {
         display: block;
     }
+    header {
+        height: 60px; /* モバイル用にヘッダーの高さを調整 */
+    }
+
+    body {
+        padding-top: 60px; /* モバイル用のパディングを調整 */
+    }
+
+    section h2 {
+        font-size: 28px; /* モバイル用にフォントサイズを小さく */
+        margin: 30px 0 15px;
+    }
 
 }
 
+.section{
+    padding: 20px;
+}
 
+/* セクションのタイトル */
+h2 {
+    text-align: center;
+    font-size: 36px;
+    margin: 40px 0 20px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
 
 .grid{
     padding: 20px;
 }
+.game-item {
+    position: relative;
+    overflow: hidden;
+}
 
-/* グリッドレイアウト */
+.game-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.game-item:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-item:hover .overlay {
+    height: 100%;
+}
+
+.overlay p {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 15px;
+}
+
+/* 既存のimage-gridスタイルの調整 */
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     margin: 20px 0;
 }
 
-.image-grid img {
+.image-grid .game-item {
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* スクリーンショットセクションのグリッドレイアウト */
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* デフォルトで3列 */
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.screenshot-item {
+    width: 100%;
+    height: 100%;
+    overflow: visible; /* ホバー時に画像がはみ出すように変更 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.screenshot-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -225,56 +337,41 @@ footer p {
     border-radius: 15px; /* 角を丸くする */
 }
 
-.image-grid img:hover {
+/* ホバーエフェクト */
+.screenshot-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-
-/* バナーセクション */
-.banner {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
+.screenshot-item:hover img {
+    transform: scale(1.04); /* 拡大率を調整してボーダーを超える */
 }
 
-.banner img {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: cover;
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+    .screenshot-grid {
+        grid-template-columns: repeat(2, 1fr); /* 768px以下では2列 */
+    }
 }
 
-/* セクションのタイトル */
-section h2 {
-    text-align: center;
-    font-size: 36px;
-    margin: 40px 0 20px;
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+@media (max-width: 480px) {
+    .screenshot-grid {
+        grid-template-columns: 1fr; /* 480px以下では1列 */
+    }
 }
 
 /* フッター */
 footer {
-    background-color: #444;
+    background-color: #333;
     color: white;
     text-align: center;
     padding: 15px 0;
-    padding-bottom: 200px;
-    width: 100%;
     position: relative;
     bottom: 0;
-    margin: 0;
+    width: 100%;
 }
 
 footer p {
     margin: 0;
     font-size: 14px;
-}
-
-/* スマートフォンの画面サイズ対応 */
-@media (max-width: 768px) {
-    .image-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
 }
